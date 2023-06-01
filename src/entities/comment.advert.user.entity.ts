@@ -15,7 +15,7 @@ class CommentAdvertUser {
     created_at: string | Date
 
     @UpdateDateColumn({ type: "date" })
-    updatedAt: string | Date 
+    updated_at: string | Date 
 
     @ManyToOne(() => User)
     @JoinColumn()

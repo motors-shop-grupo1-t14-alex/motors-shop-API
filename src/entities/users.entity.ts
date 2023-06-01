@@ -38,10 +38,10 @@ class User {
     created_at: string | Date
 
     @UpdateDateColumn({ type: "date" })
-    updatedAt: string | Date 
+    updated_at: string | Date 
 
     @DeleteDateColumn({ type: "date", nullable: true })
-    deletedAt?: string | Date | undefined | null
+    deleted_at?: string | Date | undefined | null
 
     @BeforeInsert()
     @BeforeUpdate()
