@@ -1,5 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn } from "typeorm"
-import User from "./users.entity"
+import { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn } from "typeorm";
+import User from "./users.entity";
 
 @Entity("adresses")
 class Address {

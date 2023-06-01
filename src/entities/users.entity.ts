@@ -1,14 +1,5 @@
-import { getRounds, hashSync } from "bcryptjs"
-import { 
-    Entity, 
-    Column, 
-    PrimaryGeneratedColumn, 
-    CreateDateColumn,
-    UpdateDateColumn,
-    DeleteDateColumn,
-    BeforeInsert,
-    BeforeUpdate,
-} from "typeorm"
+import { getRounds, hashSync } from "bcryptjs";
+import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, DeleteDateColumn, BeforeInsert, BeforeUpdate } from "typeorm";
 
 @Entity("users")
 class User {

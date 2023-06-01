@@ -1,6 +1,6 @@
-import { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn, ManyToOne } from "typeorm"
-import Advert from "./adverts.entity"
-import User from "./users.entity"
+import { Entity, Column, PrimaryGeneratedColumn, JoinColumn, ManyToOne, CreateDateColumn, UpdateDateColumn } from "typeorm";
+import Advert from "./adverts.entity";
+import User from "./users.entity";
 
 @Entity("comment_advert_users")
 class CommentAdvertUser {
@@ -10,6 +10,12 @@ class CommentAdvertUser {
 
     @Column({ type: "text" })
     comment: string 
+
+    @CreateDateColumn({ type: "date" })
+    created_at: string | Date
+
+    @UpdateDateColumn({ type: "date" })
+    updatedAt: string | Date 
 
     @ManyToOne(() => User)
     @JoinColumn()
@@ -21,9 +27,3 @@ class CommentAdvertUser {
 }
 
 export default CommentAdvertUser
-
-
-
-// src\migrations
-
-// src\data-source.ts

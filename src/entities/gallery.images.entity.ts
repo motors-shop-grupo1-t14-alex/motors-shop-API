@@ -1,5 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn, ManyToOne } from "typeorm"
-import Advert from "./adverts.entity"
+import { Entity, Column, PrimaryGeneratedColumn, JoinColumn, ManyToOne } from "typeorm";
+import Advert from "./adverts.entity";
 
 @Entity("gallery_images")
 class GalleryImage {

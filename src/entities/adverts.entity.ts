@@ -1,5 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn, JoinColumn, CreateDateColumn, DeleteDateColumn, UpdateDateColumn, ManyToOne } from "typeorm"
-import User from "./users.entity"
+import { Entity, Column, PrimaryGeneratedColumn, JoinColumn, CreateDateColumn, DeleteDateColumn, UpdateDateColumn, ManyToOne } from "typeorm";
+import User from "./users.entity";
 
 export enum FuelType {
     FLEX = "Flex",
