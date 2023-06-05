@@ -49,9 +49,6 @@ class Advert {
     @CreateDateColumn({ type: "date" })
     created_at: string | Date
 
-    @DeleteDateColumn({ type: "date", nullable: true })
-    deleted_at?: string | Date | undefined | null
-
     @UpdateDateColumn({ type: "date" })
     updated_at: string | Date 
 
