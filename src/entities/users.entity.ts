@@ -19,7 +19,7 @@ class User {
     @Column({ length: 11, unique: true })
     cpf: string 
 
-    @Column({ length: 11 })
+    @Column({ length: 11, unique: true })
     cellphone: string 
 
     @Column({ type: "date" })
@@ -39,9 +39,6 @@ class User {
 
     @UpdateDateColumn({ type: "date" })
     updated_at: string | Date 
-
-    @DeleteDateColumn({ type: "date", nullable: true })
-    deleted_at?: string | Date | undefined | null
 
     @BeforeInsert()
     @BeforeUpdate()
