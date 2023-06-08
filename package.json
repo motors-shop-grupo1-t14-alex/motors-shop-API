@@ -5,7 +5,6 @@
   "repository": "git@github.com:motors-shop-grupo1-t14-alex/motors-shop-API.git",
   "author": "joaovitor <carrera93jv@gmail.com>",
   "license": "MIT",
-  
   "scripts": {
     "dev": "ts-node-dev --ignore-watch node_modules --cls --rs src/server.ts",
     "typeorm": "typeorm-ts-node-commonjs"
