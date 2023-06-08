@@ -1,5 +1,5 @@
 import { Entity, Column, PrimaryGeneratedColumn, JoinColumn, ManyToOne, CreateDateColumn, UpdateDateColumn } from "typeorm";
-import Advert from "./adverts.entity";
+import { Advert } from "./adverts.entity";
 import User from "./users.entity";
 
 @Entity("comment_advert_users")

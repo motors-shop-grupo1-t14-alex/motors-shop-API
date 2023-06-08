@@ -1,7 +1,8 @@
-import { Entity, Column, PrimaryGeneratedColumn, JoinColumn, CreateDateColumn, DeleteDateColumn, UpdateDateColumn, ManyToOne } from "typeorm";
+import { Entity, Column, PrimaryGeneratedColumn, JoinColumn, CreateDateColumn, UpdateDateColumn, ManyToOne, OneToMany } from "typeorm";
 import User from "./users.entity";
+import GalleryImage from "./gallery.images.entity";
 
-export enum FuelType {
+enum FuelType {
     FLEX = "Flex",
     HYBRID = "Híbrido",
     ELECTRIC = "Elétrico"
@@ -56,6 +57,10 @@ class Advert {
     @JoinColumn()
     user: User | number
 
+    @OneToMany(() => GalleryImage, gallery_image => gallery_image.advert, {cascade: true})
+    gallery_images: GalleryImage[]
+
 }
 
-export default Advert
+export { Advert, FuelType } 
+    

@@ -26,13 +26,13 @@ class User {
     birth_date: string 
 
     @Column({ type: "text", nullable: true })
-    description : string 
+    description: string | null
 
     @Column({ type: "boolean", default: false })
-    is_seller : boolean
+    is_seller: boolean
     
     @Column({ type: "boolean", default: false })
-    is_admin : boolean
+    is_admin: boolean
 
     @CreateDateColumn({ type: "date" })
     created_at: string | Date
