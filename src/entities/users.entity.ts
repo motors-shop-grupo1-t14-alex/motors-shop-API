@@ -1,5 +1,6 @@
 import { getRounds, hashSync } from "bcryptjs";
-import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, DeleteDateColumn, BeforeInsert, BeforeUpdate } from "typeorm";
+import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, DeleteDateColumn, BeforeInsert, BeforeUpdate, OneToMany } from "typeorm";
+import { Advert } from "./adverts.entity";
 
 @Entity("users")
 class User {
@@ -39,6 +40,9 @@ class User {
 
     @UpdateDateColumn({ type: "date" })
     updated_at: string | Date 
+
+    @OneToMany(() => Advert, advert => advert.user, {cascade: true})
+    adverts: Advert[]
 
     @BeforeInsert()
     @BeforeUpdate()
