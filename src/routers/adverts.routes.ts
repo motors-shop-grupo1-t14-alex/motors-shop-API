@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { createAdvertController, listAllAdvertsController, removeAdvertController, updateAdvertController } from "../controllers/adverts.controllers";
+import { createAdvertController, listAdvertsByUserController, listAllAdvertsController, removeAdvertController, updateAdvertController } from "../controllers/adverts.controllers";
 import validateToken from "../middlewares/validateToken.middleware";
 import validateData from "../middlewares/validateData.middleware";
 import { createAdvertSchema, updateAdvertSchema } from "../schemas/adverts.schemas";
@@ -12,5 +12,6 @@ advertsRoutes.post("", validateToken, validateIfUserIsAdminOrSeller, validateDat
 advertsRoutes.get("", listAllAdvertsController)
 advertsRoutes.patch("/:id", validateToken, validateIfAdvertExists, validateIfUserIsOwnerAdvertOrAdmin, validateData(updateAdvertSchema), updateAdvertController)
 advertsRoutes.delete("/:id", validateToken, validateIfAdvertExists, validateIfUserIsOwnerAdvertOrAdmin, removeAdvertController)
+advertsRoutes.get("/user", validateToken, validateIfUserIsAdminOrSeller, listAdvertsByUserController)
 
 export default advertsRoutes
