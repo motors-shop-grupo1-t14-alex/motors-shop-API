@@ -4,8 +4,8 @@ import { createGalleryImagesSchema } from "./galleryImages.schemas";
 const createUserSchema = z.object({
     name: z.string().max(127),
     email: z.string().email().max(127),
-    password: z.string().max(255),
-    cpf: z.string().max(11),
+    password: z.string().max(255).min(8),
+    cpf: z.string().max(11).min(11),
     cellphone: z.string().max(11),
     birth_date: z.string(),
     description: z.string().nullable(),

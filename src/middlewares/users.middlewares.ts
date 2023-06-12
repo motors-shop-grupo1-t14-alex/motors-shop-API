@@ -6,7 +6,6 @@ import { AppError } from "../erros";
 
 const validateIfUserIsAdminOrSeller = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
     const userId: number = Number(res.locals.userId)
-
     const userRepository: iUserRepo = AppDataSource.getRepository(User)
 
     const findUser = await userRepository.findOne({
@@ -22,7 +21,61 @@ const validateIfUserIsAdminOrSeller = async (req: Request, res: Response, next: 
     next()
 }
 
+const validateEmailExists = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+    const userId: number = Number(res.locals.userId)
+    const userRepository: iUserRepo = AppDataSource.getRepository(User)
+
+    const findEmail = await userRepository.findOne({
+        where: {
+            email: req.body.email
+        }
+    })
+
+    if (findEmail && req.body.email && userId !== findEmail.id) {
+        throw new AppError("Email already exists", 409)
+    }
+
+    next()
+}
+
+const validateCpfExists = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+    const userId: number = Number(res.locals.userId)
+    const userRepository: iUserRepo = AppDataSource.getRepository(User)
+
+    const findCpf = await userRepository.findOne({
+        where: {
+            cpf: req.body.cpf
+        }
+    })
+
+    if (findCpf && req.body.cpf && userId !== findCpf.id) {
+        throw new AppError("CPF already exists", 409)
+    }
+
+    next()
+}
+
+const validatePhoneExists = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+    const userId: number = Number(res.locals.userId)
+    const userRepository: iUserRepo = AppDataSource.getRepository(User)
+
+    const findPhone = await userRepository.findOne({
+        where: {
+            cellphone: req.body.cellphone
+        }
+    })
+
+    if (findPhone && req.body.cellphone && userId !== findPhone.id) {
+        throw new AppError("Cellphone already exists", 409)
+    }
+
+    next()
+}
+
 export {
-    validateIfUserIsAdminOrSeller
+    validateIfUserIsAdminOrSeller,
+    validateEmailExists,
+    validatePhoneExists,
+    validateCpfExists,
 }
 
