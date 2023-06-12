@@ -33,7 +33,7 @@ const returnUserSchema = createUserSchema.extend({
         created_at: z.string(),
         updated_at: z.string(),
         gallery_images: z.array(createGalleryImagesSchema),
-    })),
+    })).optional(),
 }).omit({ password: true })
 
 export {
