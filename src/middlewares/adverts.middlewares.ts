@@ -8,7 +8,6 @@ import User from "../entities/users.entity";
 
 const validateIfAdvertExists = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
     const advertId: number = Number(req.params.id)
-
     const advertRepository: iAdvertRepo = AppDataSource.getRepository(Advert)
 
     const findAdvert = await advertRepository.findOne({
@@ -27,7 +26,6 @@ const validateIfAdvertExists = async (req: Request, res: Response, next: NextFun
 const validateIfUserIsOwnerAdvertOrAdmin = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
     const advertId: number = Number(req.params.id)
     const userId: number = Number(res.locals.userId)
-
     const advertRepository: iAdvertRepo = AppDataSource.getRepository(Advert)
     const userRepository: iUserRepo = AppDataSource.getRepository(User)
 
