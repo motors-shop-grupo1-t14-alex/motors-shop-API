@@ -5,11 +5,9 @@ import createLoginService from "../services/login/createLogin.service";
 const createLoginController = async (req: Request, res: Response) => {
     const loginData: iLoginRequest = req.body
 
-    const token = await createLoginService(loginData)
+    const tokenAndUser = await createLoginService(loginData)
 
-    return res.status(200).json({
-        token: token
-    })
+    return res.status(200).json(tokenAndUser)
 }
 
 export default createLoginController
