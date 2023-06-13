@@ -6,8 +6,9 @@ import "dotenv/config";
 import iLoginRequest from "../../interfaces/login.interface";
 import { iUserRepo } from "../../interfaces/users.interfaces";
 import User from "../../entities/users.entity";
+import { returnUserSchema } from "../../schemas/user.schemas";
 
-const createLoginService = async (loginData: iLoginRequest): Promise<string> => {
+const createLoginService = async (loginData: iLoginRequest): Promise<object> => {
     const userRepository: iUserRepo = AppDataSource.getRepository(User)
 
     const findUser = await userRepository.findOneBy({
@@ -33,7 +34,12 @@ const createLoginService = async (loginData: iLoginRequest): Promise<string> => 
         }
     )
 
-    return token
+    const user = returnUserSchema.parse(findUser)
+
+    return {
+        token: token,
+        user: user
+    }
 
 }
 
