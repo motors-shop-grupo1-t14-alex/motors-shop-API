@@ -4,78 +4,115 @@ import AppDataSource from "../data-source";
 import User from "../entities/users.entity";
 import { AppError } from "../erros";
 
-const validateIfUserIsAdminOrSeller = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
-    const userId: number = Number(res.locals.userId)
-    const userRepository: iUserRepo = AppDataSource.getRepository(User)
+const validateIfUserIsAdminOrSeller = async (
+    req: Request,
+    res: Response,
+    next: NextFunction
+): Promise<void> => {
+    const userId: number = Number(res.locals.userId);
+    const userRepository: iUserRepo = AppDataSource.getRepository(User);
 
     const findUser = await userRepository.findOne({
         where: {
-            id: userId
-        }
-    })
+            id: userId,
+        },
+    });
 
-    if (!findUser!.is_admin && !findUser!.is_seller){
-        throw new AppError("Insufficient permission", 401)
+    if (!findUser!.is_admin && !findUser!.is_seller) {
+        throw new AppError("Insufficient permission", 401);
     }
 
-    next()
-}
+    next();
+};
 
-const validateEmailExists = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
-    const userId: number = Number(res.locals.userId)
-    const userRepository: iUserRepo = AppDataSource.getRepository(User)
+const validateEmailExists = async (
+    req: Request,
+    res: Response,
+    next: NextFunction
+): Promise<void> => {
+    const userId: number = Number(res.locals.userId);
+    const userRepository: iUserRepo = AppDataSource.getRepository(User);
 
     const findEmail = await userRepository.findOne({
         where: {
-            email: req.body.email
-        }
-    })
+            email: req.body.email,
+        },
+    });
 
     if (findEmail && req.body.email && userId !== findEmail.id) {
-        throw new AppError("Email already exists", 409)
+        throw new AppError("Email already exists", 409);
     }
 
-    next()
-}
+    next();
+};
 
-const validateCpfExists = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
-    const userId: number = Number(res.locals.userId)
-    const userRepository: iUserRepo = AppDataSource.getRepository(User)
+const validateIdExists = async (
+    req: Request,
+    res: Response,
+    next: NextFunction
+): Promise<void> => {
+    const id: number = +req.params.id;
+    const userRepository: iUserRepo = AppDataSource.getRepository(User);
+
+    const findId = await userRepository.findOne({
+        where: {
+            id: id,
+        },
+    });
+
+    if (!findId) {
+        throw new AppError("User not found", 409);
+    }
+
+    next();
+};
+
+const validateCpfExists = async (
+    req: Request,
+    res: Response,
+    next: NextFunction
+): Promise<void> => {
+    const userId: number = Number(res.locals.userId);
+    const userRepository: iUserRepo = AppDataSource.getRepository(User);
 
     const findCpf = await userRepository.findOne({
         where: {
-            cpf: req.body.cpf
-        }
-    })
+            cpf: req.body.cpf,
+        },
+    });
 
     if (findCpf && req.body.cpf && userId !== findCpf.id) {
-        throw new AppError("CPF already exists", 409)
+        throw new AppError("CPF already exists", 409);
     }
 
-    next()
-}
+    next();
+};
 
-const validatePhoneExists = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
-    const userId: number = Number(res.locals.userId)
-    const userRepository: iUserRepo = AppDataSource.getRepository(User)
+const validatePhoneExists = async (
+    req: Request,
+    res: Response,
+    next: NextFunction
+): Promise<void> => {
+    const userId: number = Number(res.locals.userId);
+    const userRepository: iUserRepo = AppDataSource.getRepository(User);
 
     const findPhone = await userRepository.findOne({
         where: {
-            cellphone: req.body.cellphone
-        }
-    })
+            cellphone: req.body.cellphone,
+        },
+    });
 
     if (findPhone && req.body.cellphone && userId !== findPhone.id) {
-        throw new AppError("Cellphone already exists", 409)
+        throw new AppError("Cellphone already exists", 409);
     }
 
-    next()
-}
+    next();
+};
 
 export {
     validateIfUserIsAdminOrSeller,
     validateEmailExists,
-    validatePhoneExists,
+    validateIdExists,
     validateCpfExists,
-}
-
+    validatePhoneExists,
+};
