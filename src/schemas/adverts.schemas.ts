@@ -14,7 +14,7 @@ const createAdvertSchema = z.object({
     cover_image: z.string().url().max(255),
     gallery_images: z.array(createGalleryImagesSchema)
     .min(1, "Gallery_images must contain at least 1 url_image")
-    .max(8, "Gallery_images must contain at most 8 url_image"),
+    .max(6, "Gallery_images must contain at most 6 url_image"),
 })
 
 const returnAdvertSchema = createAdvertSchema.extend({
