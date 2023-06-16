@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 const createGalleryImagesSchema = z.object({
-    url_image: z.string().url().max(255).optional()
+    url_image: z.string().url().max(255)
 })
 
 const returnGalleryImagesSchema = createGalleryImagesSchema.extend({
