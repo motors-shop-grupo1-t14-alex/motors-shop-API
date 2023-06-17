@@ -11,6 +11,7 @@ import {
     validateIdExists,
     validatePhoneExists,
 } from "../middlewares/users.middlewares";
+import validateUserToken from "../middlewares/validateUser.middleware";
 
 const usersRoutes: Router = Router();
 
@@ -22,6 +23,6 @@ usersRoutes.post(
     validatePhoneExists,
     createUserController
 );
-usersRoutes.get("/:id", validateIdExists, retriveUserController);
+usersRoutes.get("/:id", validateUserToken, validateIdExists, retriveUserController);
 
 export default usersRoutes;
