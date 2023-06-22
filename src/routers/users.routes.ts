@@ -3,6 +3,7 @@ import validateData from "../middlewares/validateData.middleware";
 import { createUserSchema } from "../schemas/user.schemas";
 import {
     createUserController,
+    listUserController,
     retriveUserController,
 } from "../controllers/users.controllers";
 import {
@@ -23,6 +24,12 @@ usersRoutes.post(
     validatePhoneExists,
     createUserController
 );
-usersRoutes.get("/:id", validateUserToken, validateIdExists, retriveUserController);
+usersRoutes.get("", listUserController);
+usersRoutes.get(
+    "/:id",
+    validateUserToken,
+    validateIdExists,
+    retriveUserController
+);
 
 export default usersRoutes;
