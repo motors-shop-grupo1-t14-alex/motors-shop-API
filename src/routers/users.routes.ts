@@ -1,9 +1,10 @@
 import { Router } from "express";
 import validateData from "../middlewares/validateData.middleware";
-import { createUserSchema } from "../schemas/user.schemas";
+import { createUserSchema, updateUserSchema } from "../schemas/user.schemas";
 import {
     createUserController,
     retriveUserController,
+    updateUserController,
 } from "../controllers/users.controllers";
 import {
     validateCpfExists,
@@ -24,5 +25,6 @@ usersRoutes.post(
     createUserController
 );
 usersRoutes.get("/:id", validateUserToken, validateIdExists, retriveUserController);
+usersRoutes.patch("/:id", validateData(updateUserSchema), validateEmailExists, validatePhoneExists, updateUserController)
 
 export default usersRoutes;
