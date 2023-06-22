@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { createGalleryImagesSchema } from "./galleryImages.schemas";
+import { createAddressSchema, returnAddressSchema } from "./address.schemas";
 
 const createUserSchema = z.object({
     name: z.string().max(127),
@@ -11,12 +12,14 @@ const createUserSchema = z.object({
     description: z.string().nullable(),
     is_seller: z.boolean().default(false),
     is_admin: z.boolean().default(false),
+    address: createAddressSchema
 })
 
 const returnUserSchema = createUserSchema.extend({
     id: z.number(),
     created_at: z.string(),
     updated_at: z.string(),
+    address: returnAddressSchema.optional(),
     adverts: z.array(z.object({
         id: z.number(),
         brand: z.string().max(127),

@@ -10,7 +10,14 @@ import { returnUserSchema } from "../../schemas/user.schemas";
 const retriveUserService = async (id: number): Promise<iReturnUser> => {
     const userRepository: iUserRepo = AppDataSource.getRepository(User);
 
-    const user = await userRepository.findOneBy({ id: id });
+    const user = await userRepository.findOne({ 
+        where: {
+            id: id 
+        },
+        relations: {
+            address: true
+        }
+    });
 
     const newUser = returnUserSchema.parse(user);
 
