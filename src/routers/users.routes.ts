@@ -4,7 +4,9 @@ import { createUserSchema, updateUserSchema } from "../schemas/user.schemas";
 import {
     createUserController,
     deleteUserController,
+    resetPasswordController,
     retriveUserController,
+    sendEmailResetPasswordController,
     updateUserController,
 } from "../controllers/users.controllers";
 import {
@@ -28,5 +30,7 @@ usersRoutes.post(
 usersRoutes.get("/:id", validateUserToken, validateIdExists, retriveUserController);
 usersRoutes.patch("/:id",validateUserToken, validateIdExists, validateData(updateUserSchema), validateEmailExists, validatePhoneExists, updateUserController)
 usersRoutes.delete("/:id", validateUserToken, validateIdExists, deleteUserController)
+usersRoutes.post("/resetPassword", sendEmailResetPasswordController)
+usersRoutes.patch("/resetPassword/:token", resetPasswordController)
 
 export default usersRoutes;

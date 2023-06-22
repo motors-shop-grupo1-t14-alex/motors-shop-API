@@ -53,6 +53,9 @@ class User {
             this.password = hashSync(this.password, 10)
         }
     }
+
+    @Column({type: "varchar", nullable: true})
+    reset_password: string | null
 }
 
 export default User
