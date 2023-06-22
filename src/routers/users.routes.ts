@@ -3,6 +3,7 @@ import validateData from "../middlewares/validateData.middleware";
 import { createUserSchema, updateUserSchema } from "../schemas/user.schemas";
 import {
     createUserController,
+    deleteUserController,
     retriveUserController,
     updateUserController,
 } from "../controllers/users.controllers";
@@ -26,6 +27,6 @@ usersRoutes.post(
 );
 usersRoutes.get("/:id", validateUserToken, validateIdExists, retriveUserController);
 usersRoutes.patch("/:id",validateUserToken, validateIdExists, validateData(updateUserSchema), validateEmailExists, validatePhoneExists, updateUserController)
-usersRoutes.delete("/:id", validateUserToken, validateIdExists)
+usersRoutes.delete("/:id", validateUserToken, validateIdExists, deleteUserController)
 
 export default usersRoutes;
