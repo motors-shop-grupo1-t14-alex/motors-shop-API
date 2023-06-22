@@ -2,6 +2,8 @@ import { Request, Response } from "express";
 import { iCreateUser } from "../interfaces/users.interfaces";
 import createUserService from "../services/users/createUser.service";
 import retriveUserService from "../services/users/retriveUser.servives";
+import updateUserService from "../services/users/updateUser.service";
+import deleteUserService from "../services/users/deleteUser.service";
 
 const createUserController = async (req: Request, res: Response) => {
     const userData: iCreateUser = req.body;
@@ -18,4 +20,19 @@ const retriveUserController = async (req: Request, res: Response) => {
     return res.json(user);
 };
 
-export { createUserController, retriveUserController };
+const updateUserController = async (req: Request, res: Response) => {
+    const userData = req.body;
+    const userID: number = +req.params.id;
+
+    const updatedUser = await updateUserService(userData, userID)
+
+    return res.json(updatedUser)
+}
+
+export const deleteUserController = async (req: Request, res: Response) => {
+    await deleteUserService(+req.params.id);
+  
+    return res.status(204).send();
+  };
+
+export { createUserController, retriveUserController, updateUserController };

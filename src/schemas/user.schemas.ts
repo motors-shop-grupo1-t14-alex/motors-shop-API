@@ -36,7 +36,10 @@ const returnUserSchema = createUserSchema.extend({
     })).optional(),
 }).omit({ password: true })
 
+const updateUserSchema = createUserSchema.partial()
+
 export {
     createUserSchema,
     returnUserSchema,
+    updateUserSchema
 }
