@@ -11,8 +11,13 @@ import { returnUserSchema } from "../../schemas/user.schemas";
 const createLoginService = async (loginData: iLoginRequest): Promise<object> => {
     const userRepository: iUserRepo = AppDataSource.getRepository(User)
 
-    const findUser = await userRepository.findOneBy({
-        email: loginData.email
+    const findUser = await userRepository.findOne({
+        where: {
+            email: loginData.email,
+        },
+        relations: {
+            address: true
+        }
     })
 
     if (!findUser) {
