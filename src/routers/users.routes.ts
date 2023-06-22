@@ -25,6 +25,7 @@ usersRoutes.post(
     createUserController
 );
 usersRoutes.get("/:id", validateUserToken, validateIdExists, retriveUserController);
-usersRoutes.patch("/:id", validateData(updateUserSchema), validateEmailExists, validatePhoneExists, updateUserController)
+usersRoutes.patch("/:id",validateUserToken, validateIdExists, validateData(updateUserSchema), validateEmailExists, validatePhoneExists, updateUserController)
+usersRoutes.delete("/:id", validateUserToken, validateIdExists)
 
 export default usersRoutes;
