@@ -57,7 +57,7 @@ class Advert {
     @JoinColumn()
     user: User | number
 
-    @OneToMany(() => GalleryImage, gallery_image => gallery_image.advert)
+    @OneToMany(() => GalleryImage, gallery_image => gallery_image.advert, {cascade: true})
     gallery_images: GalleryImage[]
 
 }
