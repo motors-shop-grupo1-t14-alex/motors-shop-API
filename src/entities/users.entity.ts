@@ -42,7 +42,7 @@ class User {
     @UpdateDateColumn({ type: "date" })
     updated_at: string | Date 
 
-    @OneToMany(() => Advert, advert => advert.user, {cascade: true})
+    @OneToMany(() => Advert, advert => advert.user)
     adverts: Advert[]
 
     @OneToOne(() => Address, address => address.user)

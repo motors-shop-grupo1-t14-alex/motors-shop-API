@@ -39,8 +39,8 @@ class Address {
     @Column({ length: 8 })
     cep: string 
 
-    @Column({ type: "enum", enum: States })
-    uf: States 
+    @Column({ length: 2, enum: States, default: States.ACRE_AC })
+    uf: States
 
     @Column({ length: 50 })
     city: string 
@@ -54,7 +54,7 @@ class Address {
     @Column({ type: "text", nullable: true})
     complement: string | null
 
-    @OneToOne(() => User)
+    @OneToOne(() => User, { onDelete: 'CASCADE' })
     @JoinColumn()
     user: User | number
 }

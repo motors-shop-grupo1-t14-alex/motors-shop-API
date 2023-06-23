@@ -10,7 +10,7 @@ class GalleryImage {
     @Column({ length: 255 })
     url_image : string 
 
-    @ManyToOne(() => Advert)
+    @ManyToOne(() => Advert, { onDelete: 'CASCADE' })
     @JoinColumn()
     advert: Advert | number
 }

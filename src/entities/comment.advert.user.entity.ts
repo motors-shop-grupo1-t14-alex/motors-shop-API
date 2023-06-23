@@ -17,11 +17,11 @@ class CommentAdvertUser {
     @UpdateDateColumn({ type: "date" })
     updated_at: string | Date 
 
-    @ManyToOne(() => User)
+    @ManyToOne(() => User, { onDelete: 'CASCADE' })
     @JoinColumn()
     user: User | number
 
-    @ManyToOne(() => Advert)
+    @ManyToOne(() => Advert, { onDelete: 'CASCADE' })
     @JoinColumn()
     advert: Advert | number
 }
