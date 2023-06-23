@@ -14,9 +14,6 @@ const createLoginService = async (loginData: iLoginRequest): Promise<object> => 
     const findUser = await userRepository.findOne({
         where: {
             email: loginData.email,
-        },
-        relations: {
-            address: true
         }
     })
 

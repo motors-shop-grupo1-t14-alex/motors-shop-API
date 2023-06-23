@@ -1,5 +1,5 @@
 import { getRounds, hashSync } from "bcryptjs";
-import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, DeleteDateColumn, BeforeInsert, BeforeUpdate, OneToMany, OneToOne } from "typeorm";
+import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, DeleteDateColumn, BeforeInsert, BeforeUpdate, OneToMany, OneToOne, getRepository } from "typeorm";
 import { Advert } from "./adverts.entity";
 import { Address } from "./addresses.entity";
 
@@ -42,7 +42,7 @@ class User {
     @UpdateDateColumn({ type: "date" })
     updated_at: string | Date 
 
-    @OneToMany(() => Advert, advert => advert.user, {cascade: true})
+    @OneToMany(() => Advert, advert => advert.user)
     adverts: Advert[]
 
     @OneToOne(() => Address, address => address.user)
@@ -63,3 +63,4 @@ class User {
 }
 
 export default User
+

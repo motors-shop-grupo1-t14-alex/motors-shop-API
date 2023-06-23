@@ -53,11 +53,11 @@ class Advert {
     @UpdateDateColumn({ type: "date" })
     updated_at: string | Date 
 
-    @ManyToOne(() => User)
+    @ManyToOne(() => User, { onDelete: 'CASCADE' })
     @JoinColumn()
     user: User | number
 
-    @OneToMany(() => GalleryImage, gallery_image => gallery_image.advert, {cascade: true})
+    @OneToMany(() => GalleryImage, gallery_image => gallery_image.advert)
     gallery_images: GalleryImage[]
 
 }
