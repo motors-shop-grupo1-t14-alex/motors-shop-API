@@ -37,17 +37,19 @@ export const resetPasswordTemplate = (userName: string, userEmail: string, reset
 
     const email = {
         body: {
+            greeting: 'Olá',
+            signature: 'Obrigado',
             name: userName,
-            intro: 'You have received this email because a password reset request for your account was received.',
+            intro: 'Você recebeu este e-mail porque uma solicitação de redefinição de senha para sua conta na Motors Shop foi solicitada.',
             action: {
-                instructions: 'Click the button below to reset your password:',
+                instructions: 'Clique no botão abaixo para redefinir sua senha:',
                 button: {
-                    color: '#DC4D2F',
-                    text: 'Reset your password',
+                    color: '#4529E6',
+                    text: 'Redefinir sua senha',
                     link: `http://localhost:5173/passwordRecovery/${resetToken}`
                 }
             },
-            outro: 'If you did not request a password reset, no further action is required on your part.'
+            outro: 'Se você não solicitou uma redefinição de senha, basta ignorar este e-mail.'
         }
     }
 
@@ -55,7 +57,7 @@ export const resetPasswordTemplate = (userName: string, userEmail: string, reset
 
     const emailTemplete = {
         to: userEmail,
-        subject: "Reset password",
+        subject: "Redefinir senha",
         text: emailBody
     }
 
