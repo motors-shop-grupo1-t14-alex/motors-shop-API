@@ -16,6 +16,7 @@ import {
     validatePhoneExists,
 } from "../middlewares/users.middlewares";
 import validateUserToken from "../middlewares/validateUser.middleware";
+import validateToken from "../middlewares/validateToken.middleware";
 
 const usersRoutes: Router = Router();
 
@@ -28,7 +29,16 @@ usersRoutes.post(
     createUserController
 );
 usersRoutes.get("/:id", validateUserToken, validateIdExists, retriveUserController);
-usersRoutes.patch("/:id",validateUserToken, validateIdExists, validateData(updateUserSchema), validateEmailExists, validatePhoneExists, updateUserController)
+usersRoutes.patch(
+    "/:id", 
+    validateUserToken, 
+    validateToken, 
+    validateIdExists, 
+    validateData(updateUserSchema), 
+    validateEmailExists, 
+    validatePhoneExists, 
+    updateUserController
+);
 usersRoutes.delete("/:id", validateUserToken, validateIdExists, deleteUserController)
 usersRoutes.post("/resetPassword", sendEmailResetPasswordController)
 usersRoutes.patch("/resetPassword/:token", resetPasswordController)

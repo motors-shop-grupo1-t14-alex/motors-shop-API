@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { createGalleryImagesSchema } from "./galleryImages.schemas";
-import { createAddressSchema, returnAddressSchema } from "./address.schemas";
+import { createAddressSchema, returnAddressSchema, updateAddressSchema } from "./address.schemas";
 
 const createUserSchema = z.object({
     name: z.string().max(127),
@@ -39,7 +39,9 @@ const returnUserSchema = createUserSchema.extend({
     })).optional(),
 }).omit({ password: true })
 
-const updateUserSchema = createUserSchema.partial()
+const updateUserSchema = createUserSchema.extend({
+    address: updateAddressSchema
+}).partial().omit({ is_admin: true })
 
 export {
     createUserSchema,

@@ -25,6 +25,6 @@ advertsRoutes.patch(
   updateAdvertController
 );
 advertsRoutes.delete("/:id", validateToken, validateIfAdvertExists, validateIfUserIsOwnerAdvertOrAdmin, removeAdvertController);
-advertsRoutes.get("/user", listAdvertsByUserController);
+advertsRoutes.get("/user", validateToken, listAdvertsByUserController);
 
 export default advertsRoutes;
