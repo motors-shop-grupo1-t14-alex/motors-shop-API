@@ -39,6 +39,8 @@ const validateEmailExists = async (
         },
     });
 
+    console.log(findEmail, req.body.email, userId)
+
     if (findEmail && req.body.email && userId !== findEmail.id) {
         throw new AppError("Email already exists", 409);
     }
