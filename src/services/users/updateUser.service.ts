@@ -1,19 +1,28 @@
 import AppDataSource from "../../data-source";
 import User from "../../entities/users.entity";
-import { iReturnUser, iUserRepo, iUserUpdate } from "../../interfaces/users.interfaces";
-import { returnUserSchema } from "../../schemas/user.schemas";
+import { iUserRepo, iUserUpdate } from "../../interfaces/users.interfaces";
 import { iAddressRepo } from "../../interfaces/address.interfaces";
 import { Address, States } from "../../entities/addresses.entity";
 
-const updateUserService = async (userData: iUserUpdate | any, userID: number): Promise<iReturnUser>=> {
+const updateUserService = async (userData: iUserUpdate, userID: number): Promise<User | null>=> {
     const userRepository: iUserRepo = AppDataSource.getRepository(User)
-    const addressRepository: iAddressRepo= AppDataSource.getRepository(Address)
+    const addressRepository: iAddressRepo = AppDataSource.getRepository(Address)
 
     const { address, ...rest } = userData
 
-    if (address) {
+    const oldUserData = await userRepository.findOne({
+        where: {
+            id: userID,
+        },
+        relations: {
+            address: true
+        }
+    })
+
+    if (address && oldUserData) {
+
         const oldAddressData = await addressRepository.findOneBy({
-            user: userID
+            user: oldUserData
         })
 
         const newAddress = addressRepository.create({
@@ -25,7 +34,14 @@ const updateUserService = async (userData: iUserUpdate | any, userID: number): P
         await addressRepository.save(newAddress)
     }
 
-    const oldUserData = await userRepository.findOne({
+    const user = userRepository.create({
+        ...oldUserData,
+        ...rest,
+    })
+
+    await userRepository.save(user)
+
+    const newUser = await userRepository.findOne({
         where: {
             id: userID,
         },
@@ -34,16 +50,7 @@ const updateUserService = async (userData: iUserUpdate | any, userID: number): P
         }
     })
     
-    const user = userRepository.create({
-        ...oldUserData,
-        ...rest,
-    })
-
-    await userRepository.save(user)
-
-    const updatedUser = returnUserSchema.parse(user)
-
-    return updatedUser
+    return newUser
 }
 
 export default updateUserService
