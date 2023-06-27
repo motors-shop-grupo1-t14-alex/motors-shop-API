@@ -1,29 +1,53 @@
-import { Entity, Column, PrimaryGeneratedColumn, JoinColumn, ManyToOne, CreateDateColumn, UpdateDateColumn } from "typeorm";
+import {
+    Entity,
+    Column,
+    PrimaryGeneratedColumn,
+    JoinColumn,
+    ManyToOne,
+    CreateDateColumn,
+    UpdateDateColumn,
+    BeforeInsert,
+    BeforeUpdate,
+} from "typeorm";
 import { Advert } from "./adverts.entity";
 import User from "./users.entity";
 
 @Entity("comment_advert_users")
 class CommentAdvertUser {
-
     @PrimaryGeneratedColumn("increment")
-    id: number
+    id: number;
 
     @Column({ type: "text" })
-    comment: string 
+    comment: string;
 
-    @CreateDateColumn({ type: "date" })
-    created_at: string | Date
+    @CreateDateColumn({
+        type: "timestamp",
+    })
+    created_at: string | Date;
 
-    @UpdateDateColumn({ type: "date" })
-    updated_at: string | Date 
+    @UpdateDateColumn({
+        type: "timestamp",
+    })
+    updated_at: string | Date;
 
-    @ManyToOne(() => User, { onDelete: 'CASCADE' })
+    @ManyToOne(() => User, { onDelete: "CASCADE" })
     @JoinColumn()
-    user: User | number
+    user: User | number;
 
-    @ManyToOne(() => Advert, { onDelete: 'CASCADE' })
+    @ManyToOne(() => Advert, { onDelete: "CASCADE" })
     @JoinColumn()
-    advert: Advert | number
+    advert: Advert | number;
+
+    // @BeforeInsert()
+    // setCreateDate() {
+    //     this.created_at = new Date().toISOString();
+    //     this.updated_at = new Date().toISOString();
+    // }
+
+    // @BeforeUpdate()
+    // insertUpdated() {
+    //     this.updated_at = new Date();
+    // }
 }
 
-export default CommentAdvertUser
+export default CommentAdvertUser;
