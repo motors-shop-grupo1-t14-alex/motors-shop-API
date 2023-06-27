@@ -3,6 +3,7 @@ import { iUserRepo } from "../interfaces/users.interfaces";
 import AppDataSource from "../data-source";
 import User from "../entities/users.entity";
 import { AppError } from "../erros";
+import { verify } from "jsonwebtoken";
 
 const validateIfUserIsAdminOrSeller = async (
     req: Request,
@@ -17,6 +18,8 @@ const validateIfUserIsAdminOrSeller = async (
             id: userId,
         },
     });
+
+    console.log(findUser);
 
     if (!findUser!.is_admin && !findUser!.is_seller) {
         throw new AppError("Insufficient permission", 401);
@@ -109,10 +112,41 @@ const validatePhoneExists = async (
     next();
 };
 
+const verifyToken = (req: Request, res: Response, next: NextFunction) => {
+    let token: string = req.headers.authorization!;
+
+    if (!token || token == "Bearer") {
+        throw new AppError("Missing bearer token", 401);
+    }
+
+    token = token.split(" ")[1];
+
+    return verify(
+        token,
+        String(process.env.SECRET_KEY),
+        async (error: any, decoded: any) => {
+            if (error) throw new AppError(error.message, 401);
+
+            if (!decoded) {
+                throw new AppError("invalid signature", 401);
+            }
+
+            req.user = {
+                id: decoded.sub,
+                admin: decoded.admin,
+                email: decoded.email,
+            };
+
+            return next();
+        }
+    );
+};
+
 export {
     validateIfUserIsAdminOrSeller,
     validateEmailExists,
     validateIdExists,
     validateCpfExists,
     validatePhoneExists,
+    verifyToken,
 };
