@@ -40,7 +40,7 @@ class CommentAdvertUser {
 
     // @BeforeInsert()
     // setCreateDate() {
-    //     this.created_at = new Date().toISOString();
+    //     this.created_at = new Date();
     //     this.updated_at = new Date().toISOString();
     // }
 
