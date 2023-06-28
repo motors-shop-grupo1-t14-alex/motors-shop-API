@@ -17,11 +17,6 @@ commentRoutes.post(
     validateIfAdvertExists,
     createCommentController
 );
-commentRoutes.get(
-    "/:id",
-    verifyToken,
-    validateIfAdvertExists,
-    retriveCommentController
-);
+commentRoutes.get("/:id", validateIfAdvertExists, retriveCommentController);
 
 export default commentRoutes;
