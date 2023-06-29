@@ -3,6 +3,7 @@ import {
   createAdvertController,
   listAdvertsByUserController,
   listAllAdvertsController,
+  readAdvertByIdController,
   removeAdvertController,
   updateAdvertController,
 } from "../controllers/adverts.controllers";
@@ -26,5 +27,6 @@ advertsRoutes.patch(
 );
 advertsRoutes.delete("/:id", validateToken, validateIfAdvertExists, validateIfUserIsOwnerAdvertOrAdmin, removeAdvertController);
 advertsRoutes.get("/user", validateToken, listAdvertsByUserController);
+advertsRoutes.get("/:id", validateIfAdvertExists, readAdvertByIdController)
 
 export default advertsRoutes;
