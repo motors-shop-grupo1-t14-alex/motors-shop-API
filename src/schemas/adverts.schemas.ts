@@ -30,7 +30,9 @@ const returnAdvertSchema = createAdvertSchema.extend({
     price: z.union([z.number(), z.string()]),
 })
 
-const updateAdvertSchema = createAdvertSchema.partial()
+const updateAdvertSchema = createAdvertSchema.extend({
+    is_published: z.boolean().default(true),
+}).partial()
 
 const returnAllAdvertsSchema = z.array(returnAdvertSchema)
 

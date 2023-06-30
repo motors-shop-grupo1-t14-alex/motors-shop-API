@@ -1,25 +1,65 @@
 import AppDataSource from "../../data-source";
 import User from "../../entities/users.entity";
-import { AppError } from "../../erros";
-import { iReturnUser, iUserRepo } from "../../interfaces/users.interfaces";
-import { returnUserSchema } from "../../schemas/user.schemas";
+import { iUserRepo } from "../../interfaces/users.interfaces";
+import { iAdvertRepo, iPagination } from "../../interfaces/adverts.interfaces";
+import { returnAllAdvertsSchema } from "../../schemas/adverts.schemas";
+import { Advert } from "../../entities/adverts.entity";
 
-const listAdvertsByUserService = async (userId: number): Promise<iReturnUser> => {
+const listAdvertsByUserService = async (userId: number, reqQuery:any): Promise<iPagination> => {
+    let perPage: number = Number(reqQuery.perPage) || 16
+    let page: number = Number(reqQuery.page) || 1
+
+    perPage < 0 || perPage > 16 ? perPage = 16 : perPage
+    page < 0 ? page = 1 : page
+
+    const advertRepository: iAdvertRepo = AppDataSource.getRepository(Advert)
     const userRepository: iUserRepo = AppDataSource.getRepository(User)
 
-    const getAllAdvertsByUser = await userRepository.createQueryBuilder("user")
-        .innerJoinAndSelect("user.adverts", "user_adverts")
-        .innerJoinAndSelect("user_adverts.gallery_images", "user_adverts_gallery_images")
-        .where("user.id = :user", {user: userId})
-        .getOne()
+    const user = await userRepository.findOne({ 
+        where: {
+            id: userId
+        }
+    });
 
-    if (!getAllAdvertsByUser) {
-        throw new AppError("You have no adverts", 404)
+    const getAdverts = await advertRepository.find({
+        where: {
+            user: user!
+        },
+        take: perPage,
+        skip: perPage * (page - 1),
+        relations: {
+            user: true,
+            gallery_images: true
+        }
+    })
+
+    const allAdverts = returnAllAdvertsSchema.parse(getAdverts)
+
+    const getAllAdverts = await advertRepository.find({
+        where: {
+            user: user!
+        }
+    })
+
+    const baseUrl: string = `http://localhost:3000/adverts/user`
+    let prevPage: string | null = `${baseUrl}?page=${page - 1}&perPage=${perPage}`
+    let nextPage: string | null = `${baseUrl}?page=${page + 1}&perPage=${perPage}`
+
+    if (page >= Math.ceil(getAllAdverts.length / perPage)) {
+        nextPage = null
+    }
+    if (page === 1) {
+        prevPage = null
     }
 
-    const allAdvertsByUser = returnUserSchema.parse(getAllAdvertsByUser)
+    const pagination: iPagination = {
+        prevPage,
+        nextPage,
+        count: allAdverts.length,
+        data: allAdverts
+    }
 
-    return allAdvertsByUser
+    return pagination
 }
 
 export default listAdvertsByUserService
