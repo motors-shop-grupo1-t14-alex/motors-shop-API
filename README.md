@@ -12,6 +12,8 @@ Comentários nos Anúncios: Os usuários podem adicionar comentários aos anúnc
 
 Pesquisa e Filtros: A API oferece recursos de pesquisa e filtros para permitir que os usuários encontrem carros específicos com base em critérios como marca, modelo, ano, etc. Esses recursos facilitam a navegação pelos anúncios de carros e ajudam os usuários a encontrar veículos que atendam às suas necessidades.
 
+[Documentação da API](https://motors-shop-grupo1-t14-alex.github.io/doc-api/)
+
 Para inciar este projeto, é necessário instalar as dependências e configurar o arquivo de variáves de ambiente. Portanto utilize o comando abaixo para instalar tais dependências:
 
 ## Caso use yarn
