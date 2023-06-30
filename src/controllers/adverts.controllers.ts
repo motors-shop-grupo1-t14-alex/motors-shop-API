@@ -43,8 +43,9 @@ const removeAdvertController = async (req: Request, res: Response) => {
 
 const listAdvertsByUserController = async (req: Request, res: Response) => {
     const userId: number = Number(res.locals.userId)
+    const reqQuery:any = req.query 
 
-    const allAdvertsByUser = await listAdvertsByUserService(userId)
+    const allAdvertsByUser = await listAdvertsByUserService(userId, reqQuery)
 
     return res.status(200).json(allAdvertsByUser)
 }
