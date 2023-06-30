@@ -1,0 +1,20 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const adverts_controllers_1 = require("../controllers/adverts.controllers");
+const validateToken_middleware_1 = __importDefault(require("../middlewares/validateToken.middleware"));
+const validateData_middleware_1 = __importDefault(require("../middlewares/validateData.middleware"));
+const adverts_schemas_1 = require("../schemas/adverts.schemas");
+const users_middlewares_1 = require("../middlewares/users.middlewares");
+const adverts_middlewares_1 = require("../middlewares/adverts.middlewares");
+const advertsRoutes = (0, express_1.Router)();
+advertsRoutes.post("", validateToken_middleware_1.default, users_middlewares_1.validateIfUserIsAdminOrSeller, (0, validateData_middleware_1.default)(adverts_schemas_1.createAdvertSchema), adverts_controllers_1.createAdvertController);
+advertsRoutes.get("", adverts_controllers_1.listAllAdvertsController);
+advertsRoutes.patch("/:id", validateToken_middleware_1.default, adverts_middlewares_1.validateIfAdvertExists, adverts_middlewares_1.validateIfUserIsOwnerAdvertOrAdmin, (0, validateData_middleware_1.default)(adverts_schemas_1.updateAdvertSchema), adverts_controllers_1.updateAdvertController);
+advertsRoutes.delete("/:id", validateToken_middleware_1.default, adverts_middlewares_1.validateIfAdvertExists, adverts_middlewares_1.validateIfUserIsOwnerAdvertOrAdmin, adverts_controllers_1.removeAdvertController);
+advertsRoutes.get("/user", validateToken_middleware_1.default, adverts_controllers_1.listAdvertsByUserController);
+advertsRoutes.get("/:id", adverts_middlewares_1.validateIfAdvertExists, adverts_controllers_1.readAdvertByIdController);
+exports.default = advertsRoutes;
