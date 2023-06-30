@@ -14,7 +14,21 @@ const readSellerByIdService = async (sellerId: string) => {
         throw new AppError("Insufficient permission", 401)
     }
 
-    const sellerAdverts = await advertsRepo.findBy({user: seller!})
+    const sellerAdverts = await advertsRepo.find({
+        where: {
+            user: seller
+        },
+        relations: {
+            user: true
+        },
+        select: {
+            user: {
+                id: true,
+                name: true,
+                description: true
+            }
+        }
+    })
 
     const sellerReturn = {
         name: seller?.name,
