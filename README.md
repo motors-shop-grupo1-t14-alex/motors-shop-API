@@ -21,6 +21,7 @@ Para inciar este projeto, é necessário instalar as dependências e configurar 
 Após instalar as dependências, é necessário:
 
 Criar um banco de dados Postgresql em sua máquina
+<br/>
 Criar um arquivo `.env` na raiz do projeto baseado em `.env.example` e preencher com os dados de conexão em DATABASE_URL.
 
 `yarn typeorm migration:run -d ./src/data-source` Para rodar todas as migrações necessárias
@@ -32,6 +33,7 @@ Criar um arquivo `.env` na raiz do projeto baseado em `.env.example` e preencher
 `npm install` Para instalar todas as dependências
 
 Criar um banco de dados Postgresql em sua máquina
+<br/>
 Criar um arquivo `.env` na raiz do projeto baseado em `.env.example` e preencher com os dados de conexão em DATABASE_URL.
 
 `npm run dev` Para rodar a aplicação localmente
