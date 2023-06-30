@@ -2,6 +2,7 @@ import { z } from "zod";
 
 const createCommentSchema = z.object({
     comment: z.string(),
+    // created_at: z.string().optional(),
 });
 
 const returnCommentSchema = createCommentSchema.extend({

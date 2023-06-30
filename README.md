@@ -4,15 +4,15 @@ A API de anúncios e venda de carros em Node.js é um sistema robusto para geren
 
 Recursos principais da API:
 
-Autenticação de Usuários: A API permite o cadastro de usuários, fornecendo recursos para registrar novas contas e autenticar usuários existentes. A autenticação é essencial para garantir a segurança das operações e restringir o acesso a recursos específicos apenas aos usuários autorizados.
+-Autenticação de Usuários: A API permite o cadastro de usuários, fornecendo recursos para registrar novas contas e autenticar usuários existentes. A autenticação é essencial para garantir a segurança das operações e restringir o acesso a recursos específicos apenas aos usuários autorizados.
 
-Anúncios de Carros: Os usuários registrados podem cadastrar seus veículos para venda. A API fornece endpoints para criar, visualizar, atualizar e excluir informações sobre os carros. As informações do carro podem incluir detalhes como marca, modelo, ano, quilometragem, preço e descrição.
+-Anúncios de Carros: Os usuários registrados podem cadastrar seus veículos para venda. A API fornece endpoints para criar, visualizar, atualizar e excluir informações sobre os carros. As informações do carro podem incluir detalhes como marca, modelo, ano, quilometragem, preço e descrição.
 
-Comentários nos Anúncios: Os usuários podem adicionar comentários aos anúncios dos carros. Esses comentários podem conter perguntas, avaliações ou qualquer outra informação relevante sobre o veículo. Os comentários são vinculados aos anúncios específicos e podem ser lidos e respondidos por outros usuários.
+-Comentários nos Anúncios: Os usuários podem adicionar comentários aos anúncios dos carros. Esses comentários podem conter perguntas, avaliações ou qualquer outra informação relevante sobre o veículo. Os comentários são vinculados aos anúncios específicos e podem ser lidos e respondidos por outros usuários.
 
-Pesquisa e Filtros: A API oferece recursos de pesquisa e filtros para permitir que os usuários encontrem carros específicos com base em critérios como marca, modelo, ano, etc. Esses recursos facilitam a navegação pelos anúncios de carros e ajudam os usuários a encontrar veículos que atendam às suas necessidades.
+-Pesquisa e Filtros: A API oferece recursos de pesquisa e filtros para permitir que os usuários encontrem carros específicos com base em critérios como marca, modelo, ano, etc. Esses recursos facilitam a navegação pelos anúncios de carros e ajudam os usuários a encontrar veículos que atendam às suas necessidades.
 
-Para inciar este projeto, é necessário instalar as dependências e configurar o arquivo de variáves de ambiente. Portanto utilize o comando abaixo para instalar tais dependências:
+-Para inciar este projeto, é necessário instalar as dependências e configurar o arquivo de variáves de ambiente. Portanto utilize o comando abaixo para instalar tais dependências:
 
 ## Caso use yarn
 
