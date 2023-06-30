@@ -4,6 +4,7 @@ import { createUserSchema, updateUserSchema } from "../schemas/user.schemas";
 import {
     createUserController,
     deleteUserController,
+    readSellerByIdController,
     resetPasswordController,
     retriveUserController,
     sendEmailResetPasswordController,
@@ -42,5 +43,6 @@ usersRoutes.patch(
 usersRoutes.delete("/:id", validateUserToken, validateIdExists, deleteUserController)
 usersRoutes.post("/resetPassword", sendEmailResetPasswordController)
 usersRoutes.patch("/resetPassword/:token", resetPasswordController)
+usersRoutes.get("/seller/:id", validateIdExists, readSellerByIdController)
 
 export default usersRoutes;

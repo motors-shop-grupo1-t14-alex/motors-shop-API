@@ -6,6 +6,7 @@ import updateUserService from "../services/users/updateUser.service";
 import deleteUserService from "../services/users/deleteUser.service";
 import sendEmailResetPasswordService from "../services/users/sendEmail.service";
 import resetPasswordService from "../services/users/resetPassword.service";
+import readSellerByIdService from "../services/users/readSeller.service";
 
 const createUserController = async (req: Request, res: Response) => {
     const userData: iCreateUser = req.body;
@@ -54,4 +55,13 @@ const resetPasswordController = async (req: Request, res: Response) => {
     return res.json({message: "password change with success"})
 }
 
-export { createUserController, retriveUserController, updateUserController, deleteUserController, sendEmailResetPasswordController, resetPasswordController };
+const readSellerByIdController = async (req: Request, res: Response) => {
+
+    const userId = req.params.id
+
+    const seller = await readSellerByIdService(userId)
+
+    return res.status(200).json(seller)
+}
+
+export { createUserController, retriveUserController, updateUserController, deleteUserController, sendEmailResetPasswordController, resetPasswordController, readSellerByIdController };
