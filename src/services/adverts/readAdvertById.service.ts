@@ -1,7 +1,6 @@
 import AppDataSource from "../../data-source"
 import { Advert } from "../../entities/adverts.entity"
 import { iAdvertRepo } from "../../interfaces/adverts.interfaces"
-import { returnAdvertSchema } from "../../schemas/adverts.schemas"
 
 const readAdvertByIdService = async (advertId: string) => {
     const advertRepository: iAdvertRepo = AppDataSource.getRepository(Advert)
