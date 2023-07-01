@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { iCreateUser } from "../interfaces/users.interfaces";
 import createUserService from "../services/users/createUser.service";
-import retriveUserService from "../services/users/retriveUser.servives";
+import retriveUserService from "../services/users/retriveUser.service";
 import updateUserService from "../services/users/updateUser.service";
 import deleteUserService from "../services/users/deleteUser.service";
 import sendEmailResetPasswordService from "../services/users/sendEmail.service";

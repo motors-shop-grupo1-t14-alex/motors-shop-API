@@ -1,5 +1,5 @@
 import AppDataSource from "../../data-source";
-import {  Advert, FuelType } from "../../entities/adverts.entity";
+import {  Advert } from "../../entities/adverts.entity";
 import { iAdvertRepo, iCreateAdvert, iReturnAdvert } from "../../interfaces/adverts.interfaces";
 import { returnAdvertSchema } from "../../schemas/adverts.schemas";
 
@@ -9,7 +9,7 @@ const createAdvertService = async (advertData: iCreateAdvert, userId: number): P
     const advert = advertRepository.create({
         ...advertData,
         user: userId,
-        fuel_type: advertData.fuel_type as FuelType
+        fuel_type: advertData.fuel_type
     })
 
     await advertRepository.save(advert)

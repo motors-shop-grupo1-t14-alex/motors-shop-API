@@ -2,12 +2,6 @@ import { Entity, Column, PrimaryGeneratedColumn, JoinColumn, CreateDateColumn, U
 import User from "./users.entity";
 import GalleryImage from "./gallery.images.entity";
 
-enum FuelType {
-    FLEX = "Flex",
-    HYBRID = "Híbrido",
-    ELECTRIC = "Elétrico"
-}
-
 @Entity("adverts")
 class Advert {
 
@@ -62,5 +56,5 @@ class Advert {
 
 }
 
-export { Advert, FuelType } 
+export { Advert } 
     
