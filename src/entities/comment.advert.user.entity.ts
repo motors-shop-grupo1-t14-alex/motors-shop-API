@@ -5,9 +5,7 @@ import {
     JoinColumn,
     ManyToOne,
     CreateDateColumn,
-    UpdateDateColumn,
-    BeforeInsert,
-    BeforeUpdate,
+    UpdateDateColumn
 } from "typeorm";
 import { Advert } from "./adverts.entity";
 import User from "./users.entity";
@@ -37,17 +35,6 @@ class CommentAdvertUser {
     @ManyToOne(() => Advert, { onDelete: "CASCADE" })
     @JoinColumn()
     advert: Advert | number;
-
-    // @BeforeInsert()
-    // setCreateDate() {
-    //     this.created_at = new Date();
-    //     this.updated_at = new Date();
-    // }
-
-    // @BeforeUpdate()
-    // insertUpdated() {
-    //     this.updated_at = new Date();
-    // }
 }
 
 export default CommentAdvertUser;
