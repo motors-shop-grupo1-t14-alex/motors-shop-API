@@ -2,11 +2,11 @@ import { Entity, Column, PrimaryGeneratedColumn, JoinColumn, CreateDateColumn, U
 import User from "./users.entity";
 import GalleryImage from "./gallery.images.entity";
 
-enum FuelType {
-    FLEX = "Flex",
-    HYBRID = "Híbrido",
-    ELECTRIC = "Elétrico"
-}
+// enum FuelType {
+//     FLEX = "Flex",
+//     HYBRID = "Híbrido",
+//     ELECTRIC = "Elétrico"
+// }
 
 @Entity("adverts")
 class Advert {
@@ -23,8 +23,8 @@ class Advert {
     @Column({ type: "integer" })
     year: number 
 
-    @Column({ type: "enum", enum: [FuelType.FLEX, FuelType.HYBRID, FuelType.ELECTRIC], default: FuelType.FLEX })
-    fuel_type: FuelType
+    @Column({ length: 8 })
+    fuel_type: string
 
     @Column({ length: 50 })
     mileage: string 
@@ -62,5 +62,5 @@ class Advert {
 
 }
 
-export { Advert, FuelType } 
+export { Advert } 
     
