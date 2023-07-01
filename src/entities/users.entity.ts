@@ -1,5 +1,5 @@
 import { getRounds, hashSync } from "bcryptjs";
-import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, DeleteDateColumn, BeforeInsert, BeforeUpdate, OneToMany, OneToOne, getRepository } from "typeorm";
+import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, BeforeInsert, BeforeUpdate, OneToMany, OneToOne } from "typeorm";
 import { Advert } from "./adverts.entity";
 import { Address } from "./addresses.entity";
 

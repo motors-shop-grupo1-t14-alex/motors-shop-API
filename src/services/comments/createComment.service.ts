@@ -10,7 +10,7 @@ import {
 import { iUserRepo } from "../../interfaces/users.interfaces";
 
 export const createCommentService = async (
-    comment: ICreateComment,
+    comment: any,
     advertId: number,
     userId: number
 ) => {
@@ -30,6 +30,7 @@ export const createCommentService = async (
     };
 
     const newComment = commentRepo.create(commentNew);
+
     await commentRepo.save(newComment);
 
     return newComment;
