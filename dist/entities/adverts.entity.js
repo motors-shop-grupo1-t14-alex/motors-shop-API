@@ -42,7 +42,7 @@ __decorate([
     __metadata("design:type", Number)
 ], Advert.prototype, "year", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ type: "enum", enum: FuelType, default: FuelType.FLEX }),
+    (0, typeorm_1.Column)({ type: "enum", enum: [FuelType.FLEX, FuelType.HYBRID, FuelType.ELECTRIC], default: FuelType.FLEX }),
     __metadata("design:type", String)
 ], Advert.prototype, "fuel_type", void 0);
 __decorate([
