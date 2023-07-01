@@ -17,8 +17,8 @@ class Advert {
     @Column({ type: "integer" })
     year: number 
 
-    @Column({ length: 8 })
-    fuel_type: string 
+    @Column({ type: "enum", enum: [FuelType.FLEX, FuelType.HYBRID, FuelType.ELECTRIC], default: FuelType.FLEX })
+    fuel_type: FuelType
 
     @Column({ length: 50 })
     mileage: string 
