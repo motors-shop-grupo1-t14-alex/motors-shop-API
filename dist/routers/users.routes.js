@@ -1,0 +1,21 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const validateData_middleware_1 = __importDefault(require("../middlewares/validateData.middleware"));
+const user_schemas_1 = require("../schemas/user.schemas");
+const users_controllers_1 = require("../controllers/users.controllers");
+const users_middlewares_1 = require("../middlewares/users.middlewares");
+const validateUser_middleware_1 = __importDefault(require("../middlewares/validateUser.middleware"));
+const validateToken_middleware_1 = __importDefault(require("../middlewares/validateToken.middleware"));
+const usersRoutes = (0, express_1.Router)();
+usersRoutes.post("", (0, validateData_middleware_1.default)(user_schemas_1.createUserSchema), users_middlewares_1.validateEmailExists, users_middlewares_1.validateCpfExists, users_middlewares_1.validatePhoneExists, users_controllers_1.createUserController);
+usersRoutes.get("/:id", validateUser_middleware_1.default, users_middlewares_1.validateIdExists, users_controllers_1.retriveUserController);
+usersRoutes.patch("/:id", validateUser_middleware_1.default, validateToken_middleware_1.default, users_middlewares_1.validateIdExists, (0, validateData_middleware_1.default)(user_schemas_1.updateUserSchema), users_middlewares_1.validateEmailExists, users_middlewares_1.validatePhoneExists, users_controllers_1.updateUserController);
+usersRoutes.delete("/:id", validateUser_middleware_1.default, users_middlewares_1.validateIdExists, users_controllers_1.deleteUserController);
+usersRoutes.post("/resetPassword", users_controllers_1.sendEmailResetPasswordController);
+usersRoutes.patch("/resetPassword/:token", users_controllers_1.resetPasswordController);
+usersRoutes.get("/seller/:id", users_middlewares_1.validateIdExists, users_controllers_1.readSellerByIdController);
+exports.default = usersRoutes;
