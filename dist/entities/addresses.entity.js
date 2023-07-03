@@ -57,7 +57,7 @@ __decorate([
     __metadata("design:type", String)
 ], Address.prototype, "cep", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ length: 2, enum: States, default: States.ACRE_AC }),
+    (0, typeorm_1.Column)({ length: 2, enum: [States.ACRE_AC, States.ALAGOAS_AL, States.AMAPA_AP, States.AMAZONAS_AM, States.BAHIA_BA, States.CEARA_CE, States.DISTRITO_FEDERAL_DF, States.ESPIRITO_SANTO_ES, States.GOIAS_GO, States.MARANHAO_MA, States.MATO_GROSSO_DO_SUL_MS, States.MATO_GROSSO_MT, States.MINAS_GERAIS_MG, States.PARAIBA_PB, States.PARANA_PR, States.PARA_PA, States.PERNAMBUCO_PE, States.PIAUI_PI, States.RIO_DE_JANEIRO_RJ, States.RIO_GRANDE_DO_NORTE_RN, States.RIO_GRANDE_DO_SUL_RS, States.RONDONIA_RO, States.RORAIMA_RR, States.SANTA_CATARINA_SC, States.SAO_PAULO_SP, States.SERGIPE_SE, States.TOCANTINS_TO], default: States.ACRE_AC }),
     __metadata("design:type", String)
 ], Address.prototype, "uf", void 0);
 __decorate([

@@ -16,6 +16,11 @@ exports.Advert = void 0;
 const typeorm_1 = require("typeorm");
 const users_entity_1 = __importDefault(require("./users.entity"));
 const gallery_images_entity_1 = __importDefault(require("./gallery.images.entity"));
+// enum FuelType {
+//     FLEX = "Flex",
+//     HYBRID = "Híbrido",
+//     ELECTRIC = "Elétrico"
+// }
 let Advert = class Advert {
 };
 exports.Advert = Advert;
