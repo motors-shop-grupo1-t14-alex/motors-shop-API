@@ -1,6 +1,6 @@
 import AppDataSource from "../../data-source";
 import User from "../../entities/users.entity";
-import { randomUUID } from "node:crypto";
+import { randomUUID } from "crypto";
 import { AppError } from "../../erros";
 import { iUserRepo } from "../../interfaces/users.interfaces";
 import { resetPasswordTemplate, sendEmail } from "../../utils/sendEmail.utils";

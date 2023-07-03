@@ -14,7 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const data_source_1 = __importDefault(require("../../data-source"));
 const users_entity_1 = __importDefault(require("../../entities/users.entity"));
-const node_crypto_1 = require("node:crypto");
+const crypto_1 = require("crypto");
 const erros_1 = require("../../erros");
 const sendEmail_utils_1 = require("../../utils/sendEmail.utils");
 const sendEmailResetPasswordService = (email) => __awaiter(void 0, void 0, void 0, function* () {
@@ -25,7 +25,7 @@ const sendEmailResetPasswordService = (email) => __awaiter(void 0, void 0, void 
     if (!findEmail) {
         throw new erros_1.AppError("user not found", 404);
     }
-    const resetToken = (0, node_crypto_1.randomUUID)();
+    const resetToken = (0, crypto_1.randomUUID)();
     const user = userRepository.create(Object.assign(Object.assign({}, findEmail), { reset_password: resetToken }));
     yield userRepository.save(user);
     const resetPassword = (0, sendEmail_utils_1.resetPasswordTemplate)(findEmail.name, email, resetToken);
