@@ -21,7 +21,7 @@ commentRoutes.post(
     createCommentController
 );
 commentRoutes.get("/:id", validateIfAdvertExists, retriveCommentController);
-commentRoutes.delete("/:id", validateIfCommentExists, deleteCommentController);
-commentRoutes.patch("/:id", validateIfCommentExists, updateCommentController);
+commentRoutes.delete("/:id", verifyToken, validateIfCommentExists, deleteCommentController);
+commentRoutes.patch("/:id", verifyToken, validateIfCommentExists, updateCommentController);
 
 export default commentRoutes;
