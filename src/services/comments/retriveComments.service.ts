@@ -18,6 +18,7 @@ export const retriveCommentsServices = async (advertId: number) => {
         },
         select: {
             user: {
+                id: true,
                 name: true
             }
         }
